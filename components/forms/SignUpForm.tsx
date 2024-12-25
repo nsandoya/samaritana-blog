@@ -5,18 +5,7 @@ import {redirect} from 'next/navigation'
 import { registerUserAction } from '@/data/actions/authActions'
 import { useFormState } from 'react-dom'
 import { useForm } from '@/hooks/useForm'
-import { registerUserService } from '@/data/services/authService'
-
-import {cookies} from 'next/headers';
-
-// Cookies config
-const config = {
-    maxAge: 60 * 60 * 24 * 7,
-    path: "/",
-    domain: process.env.NEXT_STRAPI_API_BASE_URL,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production"
-}
+import { registerUserService} from '@/data/services/authService'
 
 const sendToStrapi = async (formState: any) => {
   const responseData = await registerUserService(formState)
@@ -29,10 +18,9 @@ const sendToStrapi = async (formState: any) => {
     }
   }
 
-  (await cookies()).set("jwt", responseData.jwt, config);
-  redirect("/")
-  
   //console.log("Registro exitoso :D", responseData.jwt)
+
+  redirect("/")
   
   /* return {
     ...formState,

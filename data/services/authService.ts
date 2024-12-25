@@ -1,5 +1,14 @@
 import { getStrapiBaseURL, getStrapiURL } from "@/lib/utils";
+//import {cookies} from 'next/headers';
 
+// Cookies config
+/* const config = {
+    maxAge: 60 * 60 * 24 * 7,
+    path: "/",
+    domain: process.env.NEXT_STRAPI_API_BASE_URL,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production"
+} */
 
 interface RegisterUserProps {
   username: string;
@@ -13,6 +22,10 @@ interface LoginUserProps {
 }
 
 const baseUrl = getStrapiBaseURL();
+/* 
+export const setCookies = async (jwt:string) => {
+  (await cookies()).set("jwt", jwt, config);
+} */
 
 export async function registerUserService(userData: RegisterUserProps) {
     const url = `${baseUrl}/auth/local/register`;
@@ -25,7 +38,8 @@ export async function registerUserService(userData: RegisterUserProps) {
         },
         body: JSON.stringify({ ...userData }),
       });
-
+    
+    console.log("Respuesta desde authService",response.json())
     return response.json();
   } catch (error) {
     console.error("Registration Service Error:", error);
