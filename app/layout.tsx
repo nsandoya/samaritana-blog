@@ -29,20 +29,9 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
   return (
     <html lang="en">
       <body className={`${rubik}`}
-        /* className={`${geistSans.variable} ${geistMono.variable} antialiased`} */
       >
         <Navbar />
         {children}
-
-        {/* 
-        <SidebarProvider>
-          <AppSidebar />
-          <main>
-            <SidebarTrigger />
-            {children}
-          </main>
-        </SidebarProvider>
-        {children} */}
         <div className="flex">
             
           {/* <SidebarProvider>

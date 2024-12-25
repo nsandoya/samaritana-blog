@@ -4,22 +4,49 @@ import React from 'react'
 import { registerUserAction } from '@/data/actions/authActions'
 import { useFormState } from 'react-dom'
 import { useForm } from '@/hooks/useForm'
+import { registerUserService } from '@/data/services/authService'
 
-const initialState = {
-  username: "",
-  password: "",
-  email: ""
+
+const sendToStrapi = async (formState: any) => {
+  const responseData = await registerUserService(formState)
+  console.log("Response data", responseData)
+  if(!responseData){
+    return{
+        ...formState,
+        strapiErrors: null,
+        message: "We couldn't process your request. Please try again"
+    }
+  }
+
+  console.log("Registro exitoso :D", responseData.jwt)
+
+  return {
+    ...formState,
+    data: "ok"
+  }
 }
 
-const SignUpForm = () => {
-  //const [formState, setFormState] = useFormState(registerUserAction, initialState);
 
+const SignUpForm = () => {
+  const initialState = {
+    username: "",
+    password: "",
+    email: ""
+  }
+  
+  //const [formState, setFormState] = useFormState(registerUserAction, initialState);
+  const onSubmit =  async(e: React.FormEvent) => {
+    e.preventDefault();
+    await sendToStrapi(formState)
+  }
+  
+  
   const {onInputChange, formState} = useForm(initialState)
 
-  console.log("Hello. This is formState",formState)
+  //console.log("Hello. This is formState",formState)
 
   return (
-    <form /* onSubmit={handleSubmit=} *//* action={setFormState}  */className="w-1/2">
+    <form onSubmit={onSubmit}/* action={setFormState}  */className="w-1/2">
       <label>
         <span>Name</span>
         <input
