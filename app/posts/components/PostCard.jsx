@@ -5,7 +5,7 @@ const PostCard = ({post}) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   return (
-    <div>
+    <div id={post.documentId}>
       <div className="card">
           <h3>{post.title}</h3>
           <p>{post.content.slice(0,150)}...</p>

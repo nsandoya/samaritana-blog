@@ -3,7 +3,9 @@ import React from 'react'
 
 // Obtiene el post por ID
 const getPostById = async (url) => {
-  const res = await fetch(url);
+  await new Promise(resolve => setTimeout(resolve, 3000))
+
+  const res = await fetch(`${url}?populate=*`);
   if (!res.ok) {
     if (res.status === 404) {
       throw new Error('Post no existe'); // Lanza un error personalizado
@@ -29,12 +31,17 @@ const BlogPost = async ({ params }) => {
       throw new Error('Not found');
     }
   
-    const {data:post} = data
+    const {data:post} = data;
+    //console.log("Qué ha llegado",data)
     
     return (
       <main>
         <h1>{post.title}</h1>
-        {/* <img src={post.featuredImage.url}/> */}
+        <img 
+          src={post.featuredImage.formats.small.url}
+          width={post.featuredImage.formats.small.width} 
+          height={post.featuredImage.formats.small.height} 
+        />
         <p>{post.content}</p>
       </main>
     );
