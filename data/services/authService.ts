@@ -1,5 +1,6 @@
 import { getStrapiBaseURL, getStrapiURL } from "@/lib/utils";
 
+
 interface RegisterUserProps {
   username: string;
   password: string;
@@ -16,14 +17,14 @@ const baseUrl = getStrapiBaseURL();
 export async function registerUserService(userData: RegisterUserProps) {
     const url = `${baseUrl}/auth/local/register`;
     
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...userData }),
-    });
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...userData }),
+      });
 
     return response.json();
   } catch (error) {

@@ -1,29 +1,43 @@
 "use client"
 
 import React from 'react'
+import {redirect} from 'next/navigation'
 import { registerUserAction } from '@/data/actions/authActions'
 import { useFormState } from 'react-dom'
 import { useForm } from '@/hooks/useForm'
 import { registerUserService } from '@/data/services/authService'
 
+import {cookies} from 'next/headers';
+
+// Cookies config
+const config = {
+    maxAge: 60 * 60 * 24 * 7,
+    path: "/",
+    domain: process.env.NEXT_STRAPI_API_BASE_URL,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production"
+}
 
 const sendToStrapi = async (formState: any) => {
   const responseData = await registerUserService(formState)
   console.log("Response data", responseData)
-  if(!responseData){
+  if(responseData.error){
     return{
         ...formState,
-        strapiErrors: null,
+        strapiErrors: responseData.errors,
         message: "We couldn't process your request. Please try again"
     }
   }
 
-  console.log("Registro exitoso :D", responseData.jwt)
-
-  return {
+  (await cookies()).set("jwt", responseData.jwt, config);
+  redirect("/")
+  
+  //console.log("Registro exitoso :D", responseData.jwt)
+  
+  /* return {
     ...formState,
     data: "ok"
-  }
+  } */
 }
 
 
