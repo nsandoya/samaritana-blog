@@ -6,7 +6,7 @@ async function getBlogPosts() {
     const strapiApiUrl = process.env.STRAPI_PUBLIC_API_URL;
     const res = await(fetch(strapiApiUrl, {
       next:{
-        revalidate: 60
+        revalidate: 0 // El caché estará inactivo para esta página
       }
     }))
     console.log(res)

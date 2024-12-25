@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react'
 
 const PostCard = ({post}) => {
@@ -8,9 +9,14 @@ const PostCard = ({post}) => {
       <div className="card">
           <h3>{post.title}</h3>
           <p>{post.content.slice(0,150)}...</p>
-          <a href={`${apiUrl}/posts/${post.documentId}`}>
-            <button>Ir al post</button>
-          </a>
+          <div className='pill medium'>
+            {post.wrote_at}
+          </div>
+          
+        <Link href={`${apiUrl}/posts/${post.documentId}`}>
+          <button className='btn-primary'>Detalles</button>
+        </Link>
+          
         </div>
     </div>
   )
