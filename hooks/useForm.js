@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
+import {registerUserService} from '@/data/services/authService'
 
-export const useForm = ( initialForm = {}, formValidations = {} ) => {
+/* export const useForm = ( initialForm = {}, formValidations = {} ) => {
   
     const [ formState, setFormState ] = useState( initialForm );
     const [formValidation, setFormValidation] = useState({});
@@ -57,4 +58,21 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
         formValidation,
         isFormValid,
     }
-}
+} */
+
+export const useForm = (initialState) => {
+    const [formState, setFormState] = useState(initialState);
+    
+    const onInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormState((prev) => ({
+        ...prev,
+        [name]: value,
+        }));
+    };
+    
+    return {
+        formState,
+        onInputChange,
+    };
+    };
