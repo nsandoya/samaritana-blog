@@ -1,9 +1,11 @@
-import { notFound } from 'next/navigation';
 import React from 'react'
+
+//import Error from 'next/error';
+import { notFound } from 'next/navigation';
 
 // Obtiene el post por ID
 const getPostById = async (url) => {
-  await new Promise(resolve => setTimeout(resolve, 3000))
+  //await new Promise(resolve => setTimeout(resolve, 3000))
 
   const res = await fetch(`${url}?populate=*`);
   if (!res.ok) {
@@ -21,7 +23,7 @@ const getPostById = async (url) => {
 // Componente de la página dinámica
 const BlogPost = async ({ params }) => {
   try{
-    const { id } = await params;
+    const { id } = params;
     const apiUrl = process.env.STRAPI_PUBLIC_API_URL;
     const url = `${apiUrl}/${id}`
     //console.log("Ruta", url)
@@ -46,7 +48,9 @@ const BlogPost = async ({ params }) => {
       </main>
     );
   }catch(error){
+    //Error()
     notFound()
+    //console.log(error)
   }
 
 };

@@ -2,11 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Rubik, Geist, Geist_Mono } from "next/font/google";
 
-import {Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger} from '@/components/ui/menubar'
 import Navbar from "@/components/shared/Navbar";
-import { Sidebar } from "lucide-react";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/ui/app-sidebar"
+
+
+
 
 const rubik = Rubik({subsets: ['latin']})
 

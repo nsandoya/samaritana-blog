@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import BlogPostList from './posts/components/BlogPostsList'
+import BlogPostList from './posts/components/BlogPostsList';
+import Loading from './loading';
 
 export const metadata = {
   title: 'Home',
@@ -12,8 +13,7 @@ export default function Home() {
   return (
     <div className="">
       <main>
-        <BlogPostList></BlogPostList>
-        
+          <BlogPostList></BlogPostList>
       </main> 
     </div>
   );

@@ -4,7 +4,7 @@ import PostCard from './PostCard'
 
 async function getBlogPosts() {
 
-  await new Promise(resolve => setTimeout(resolve, 3000))
+  //await new Promise(resolve => setTimeout(resolve, 3000))
 
     const strapiApiUrl = process.env.STRAPI_PUBLIC_API_URL;
     const res = await(fetch(strapiApiUrl, {
@@ -12,13 +12,13 @@ async function getBlogPosts() {
         revalidate: 0 // El caché estará inactivo para esta página
       }
     }))
-    console.log(res)
+    //console.log(res)
     return res.json()
   }
   
   export default async function BlogPostsList () {
     const {data:blogPosts} = await getBlogPosts()
-    console.log("Blogs",blogPosts)
+    //console.log("Blogs",blogPosts)
   return (
     <div>
       <h1>Blog Post list</h1>
