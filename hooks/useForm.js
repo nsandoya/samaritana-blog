@@ -75,4 +75,4 @@ export const useForm = (initialState) => {
         formState,
         onInputChange,
     };
-    };
+};

@@ -1,6 +1,15 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
+/* const createAuthor = async (token:any) => {
+
+  const response = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}authors?bearer:${token}`)
+
+  return response
+} */
+
+/* POST
+/api/authors */
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -25,6 +34,9 @@ export const authOptions: NextAuthOptions = {
 
         token.jwt = data.jwt;
         token.id = data.user.id;
+
+        /* const author = await createAuthor(token.jwt);
+        console.log("###Author", author) */
       }
       return Promise.resolve(token)
       
