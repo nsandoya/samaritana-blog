@@ -23,8 +23,8 @@ const getPostById = async (url) => {
 // Componente de la página dinámica
 const BlogPost = async ({ params }) => {
   try{
-    const { id } = params;
-    const apiUrl = process.env.STRAPI_PUBLIC_API_URL;
+    const { id } = await params;
+    const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
     const url = `${apiUrl}/${id}`
     //console.log("Ruta", url)
     const data = await getPostById(url);

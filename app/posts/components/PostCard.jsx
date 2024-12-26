@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react'
 
 const PostCard = ({post}) => {
+  //const apiUrl = process.env.NEXT_STRAPI_API_BASE_URL;
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   return (
