@@ -2,19 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import {redirect} from 'next/navigation'
 
-import ItemsList from '../components/shared/ItemsList';
 import Loading from './loading';
 import { getServerSession } from "next-auth";
 import {authOptions} from '@/app/api/auth/[...nextauth]/route'
-
-
+import UserCard from "@/components/shared/UserCard";
+import ItemsList from "@/components/shared/ItemsList";
 
 export const metadata = {
   title: 'Home',
   description: 'Samaritana blog admin website :)'
 }
 
-export default async function Home() {
+export default async function Reviews() {
   const session = await getServerSession(authOptions);
 
   if(!session){
@@ -34,6 +33,7 @@ export default async function Home() {
   return (
     <div className="">
       <main>
+        {/* <UserCard user={session.user}/> */}
           <div className="w-full flex flex-row items-center rounded-xl card bg-white">
             <img 
               src={userImage}
@@ -43,9 +43,8 @@ export default async function Home() {
             <h3>
               Bienvenido/a, {username}
             </h3>
-            {/* Usuario conectado: {JSON.stringify(session.user)} */}
           </div>
-          <ItemsList section="posts"></ItemsList>
+          <ItemsList section={"reviews"}></ItemsList>
       </main> 
     </div>
   );

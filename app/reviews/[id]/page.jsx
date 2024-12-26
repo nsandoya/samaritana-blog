@@ -19,47 +19,48 @@ const getPostById = async (url) => {
     }
 
     const {data} = await res.json();
-    const img = await getMedia(data.featuredImage?.url, data.featuredImage?.name);
+    if(data.featuredImage){
+        const img = await getMedia(data.featuredImage?.url, data.featuredImage?.name);
+        return { post: data, img };
+    }
+    return {post: data}
     //console.log("Respuesta", img)
 
-    return { post: data, img };
   } catch (error) {
     console.error('Error en getPostById:', error);
     throw error;
   }
 }
 
-
-const BlogDetails = async ({ params }) => {
+const ReviewDetails = async ({ params }) => {
   try{
     const { id } = await params;
     const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-    const url = `${apiUrl}posts/${id}`
-    
+    const url = `${apiUrl}reviews/${id}`
     const data = await getPostById(url);
-    
-    //console.log("###Respuesta", data)
+  
     if (!data || !data.post) {
       throw new Error('Not found');
     }
   
     const {post, img} = data;
     
+    
     return (
       <main className='grid grid-cols-1 gap-4'>
-        <h1>{post.title}</h1>
-        <img 
-          src={img}
-          width={post.featuredImage.formats.medium.width} 
-          height={post.featuredImage.formats.medium.height} 
-        />
-        {post.author &&
-          <span className='font-bold text-slate-500'>Por {post.author.name}</span>
+        <h1>{post.author}</h1>
+        <span className='text-slate-600 '>Fecha: <span className='font-semibold'>{post.wrote_at}</span></span>
+        {img &&
+            <img 
+            src={img}
+            width={post.featuredImage.formats.medium.width} 
+            height={post.featuredImage.formats.medium.height} 
+            />
         }
+        
         <p>{post.content}</p>
       </main>
     );
-
   }catch(error){
     notFound()
     //console.log(error)
@@ -67,4 +68,4 @@ const BlogDetails = async ({ params }) => {
 
 };
 
-export default BlogDetails;
+export default ReviewDetails;
