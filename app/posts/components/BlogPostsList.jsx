@@ -6,7 +6,7 @@ async function getBlogPosts() {
 
   //await new Promise(resolve => setTimeout(resolve, 3000))
 
-    const strapiApiUrl = process.env.STRAPI_PUBLIC_API_URL;
+    const strapiApiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
     const res = await(fetch(strapiApiUrl, {
       next:{
         revalidate: 0 // El caché estará inactivo para esta página
