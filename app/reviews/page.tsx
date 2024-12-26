@@ -1,12 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
+
 import {redirect} from 'next/navigation'
 
-import Loading from './loading';
 import { getServerSession } from "next-auth";
 import {authOptions} from '@/app/api/auth/[...nextauth]/route'
-import UserCard from "@/components/shared/UserCard";
 import ItemsList from "@/components/shared/ItemsList";
+import UserCard from '@/components/shared/UserCard';
 
 export const metadata = {
   title: 'Home',
@@ -28,22 +26,13 @@ export default async function Reviews() {
     ? session.user?.name
     : "No user name"
 
-  
+  const user = {userImage, username}
 
   return (
     <div className="">
       <main>
         {/* <UserCard user={session.user}/> */}
-          <div className="w-full flex flex-row items-center rounded-xl card bg-white">
-            <img 
-              src={userImage}
-              width={40} height={40}
-              className="rounded-full mx-4"
-            />
-            <h3>
-              Bienvenido/a, {username}
-            </h3>
-          </div>
+          <UserCard user={user}/>
           <ItemsList section={"reviews"}></ItemsList>
       </main> 
     </div>

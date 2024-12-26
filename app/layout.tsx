@@ -1,6 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
-import { Rubik, Geist, Geist_Mono } from "next/font/google";
+import { Rubik } from "next/font/google";
 
 import Navbar from "@/components/shared/Navbar";
 

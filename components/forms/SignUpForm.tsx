@@ -2,12 +2,17 @@
 
 import React from 'react'
 import {redirect} from 'next/navigation'
-import { registerUserAction } from '@/data/actions/authActions'
-import { useFormState } from 'react-dom'
+/* import { registerUserAction } from '@/data/actions/authActions'
+import { useFormState } from 'react-dom' */
 import { useForm } from '@/hooks/useForm'
 import { registerUserService} from '@/data/services/authService'
 
-const sendToStrapi = async (formState: any) => {
+interface RegisterUserProps {
+  username: string;
+  password: string;
+  email: string;
+}
+const sendToStrapi = async (formState:RegisterUserProps) => {
   const responseData = await registerUserService(formState)
   console.log("Response data", responseData)
   if(responseData.error){

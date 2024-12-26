@@ -12,8 +12,8 @@ const Navbar = () => {
     return (
         <div className='flex flex-rows items-center'>
             {paths.map(({text, href}) => (
-                <div className="mx-4">
-                    <Link href={href} key={text}>{text}</Link>
+                <div className="mx-4" key={text}>
+                    <Link href={href} >{text}</Link>
                 </div>
             ))}
             <div className='ml-auto text-right'>

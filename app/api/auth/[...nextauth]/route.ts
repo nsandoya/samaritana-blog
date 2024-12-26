@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
       return Promise.resolve(token)
       
     },
-    async session({ session, user }) {
+    async session({ session }) {
       return session;
     }
   },
