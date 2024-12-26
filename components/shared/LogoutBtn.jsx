@@ -2,13 +2,12 @@
 
 import React from 'react';
 import {useSession, signIn, signOut} from 'next-auth/react'
-import Loading from '@/app/loading';
 
 const LogoutBtn = () => {
-  //const {data:session, status} = useSession();
+  /* const {data:session, statusLog} = useSession();
   //console.log("Status",status, session);
 
-  if(status === "loading"){
+  if(statusLog === "loading"){
     return(
       <button className='btn-secondary'>
         <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +19,7 @@ const LogoutBtn = () => {
     )
   }
 
-  if(status === "unauthenticated"){
+  if(statusLog === "unauthenticated"){
     return(
       <button 
         onClick={() => signIn()}
@@ -28,7 +27,7 @@ const LogoutBtn = () => {
         X Sign in
       </button>
     )
-  }
+  } */
 
   return (
       <button 

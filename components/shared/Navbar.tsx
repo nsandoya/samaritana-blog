@@ -6,7 +6,7 @@ import LogoutBtn from './LogoutBtn'
 const Navbar = () => {
     const paths = [
         {text: "Home", href:"/"},
-        {text: "Blog posts", href:"/posts"},
+        {text: "Blog posts", href:"/"},
         {text: "Reviews", href:"/reviews"}
     ]
     return (
