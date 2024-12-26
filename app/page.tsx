@@ -4,7 +4,7 @@ import {redirect} from 'next/navigation'
 import ItemsList from '../components/shared/ItemsList';
 
 import { getServerSession } from "next-auth";
-import {authOptions} from '@/app/api/auth/[...nextauth]/route'
+import {authOptions} from '@/lib/auth'
 import UserCard from "@/components/shared/UserCard";
 
 

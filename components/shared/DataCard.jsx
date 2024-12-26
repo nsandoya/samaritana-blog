@@ -6,15 +6,15 @@ const DataCard = ({post, section}) => {
   //const apiUrl = process.env.NEXT_STRAPI_API_BASE_URL;
   const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
-  const {documentId, title, wrote_at, content, author, book} = post;
+  const {documentId, title, wrote_at, content, author, book, id} = post;
 
-  //console.log("Libro",book)
+  //console.log("Autor",author)
 
   return (
-    <div id={documentId}>
+    <div key={id} id={documentId}>
       <div className="card">
-        {author? 
-          <h3>{author.name}</h3>
+        {author ? 
+          <h3>{author}</h3>
           :
           <h3>{title}</h3>
         }

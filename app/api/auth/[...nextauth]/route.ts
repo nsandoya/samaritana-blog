@@ -1,51 +1,6 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
+import { authOptions } from "@/lib/auth"
+import NextAuth from "next-auth"
 
-/* const createAuthor = async (token:any) => {
-
-  const response = await fetch(`${process.env.NEXT_STRAPI_API_BASE_URL}authors?bearer:${token}`)
-
-  return response
-} */
-
-/* POST
-/api/authors */
-
-export const authOptions: NextAuthOptions = {
-  // Configure one or more authentication providers
-  providers: [
-    GoogleProvider({
-      clientId: process.env.NEXT_GOOGLE_CLIENT_ID ?? '',
-      clientSecret: process.env.NEXT_GOOGLE_CLIENT_SECRET ?? '',
-    }),
-    // ...add more providers here
-  ],
-
-  callbacks: {
-    async jwt({ token, account, user }) {
-      const isSignIn = user ? true : false;
-      if (isSignIn) {
-        //console.log("Account:", account);
-        const response = await fetch(
-          `${process.env.NEXT_STRAPI_API_BASE_URL}/auth/${account?.provider}/callback?access_token=${account?.access_token}`
-        );
-
-        const data = await response.json();
-
-        token.jwt = data.jwt;
-        token.id = data.user.id;
-
-        /* const author = await createAuthor(token.jwt);
-        console.log("###Author", author) */
-      }
-      return Promise.resolve(token)
-      
-    },
-    async session({ session }) {
-      return session;
-    }
-  },
-}
 
 const handler = NextAuth(authOptions)
 export {handler as GET, handler as POST}

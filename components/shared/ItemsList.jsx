@@ -22,7 +22,7 @@ async function getBlogPosts(section) {
     const {data:blogPosts} = await getBlogPosts(section)
     //console.log("Blogs",blogPosts)
   return (
-    <div>
+    <div key={`${section}s-list`}>
       <h1 className='capitalize'>{section} list</h1>
       {blogPosts.map((post) => (
         <DataCard post={post} section={section} ></DataCard>

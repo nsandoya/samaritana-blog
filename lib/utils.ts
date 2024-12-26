@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -16,3 +17,4 @@ export function getStrapiBaseURL(){
   console.log("Strapi Base URL",strapiApiBaseUrl)
   return strapiApiBaseUrl
 }
+
