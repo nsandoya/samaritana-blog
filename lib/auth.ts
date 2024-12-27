@@ -11,7 +11,9 @@ export const authOptions: NextAuthOptions = {
       }),
       // ...add more providers here
     ],
-  
+
+    secret: process.env.NEXTAUTH_SECRET ?? '',
+
     callbacks: {
       async jwt({ token, account, user }) {
         const isSignIn = user ? true : false;

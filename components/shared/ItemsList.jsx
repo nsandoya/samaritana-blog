@@ -8,7 +8,7 @@ async function getBlogPosts(section) {
 
     const strapiApiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
     const url = `${strapiApiUrl}${section}?populate=*`
-    //console.log(section)
+    console.log("URL",url)
     const res = await(fetch(url, {
       next:{
         revalidate: 0 // El caché estará inactivo para esta página
@@ -19,15 +19,15 @@ async function getBlogPosts(section) {
   }
   
   export default async function ItemsList ({section}) {
-    const {data:blogPosts} = await getBlogPosts(section)
-    //console.log("Blogs",blogPosts)
+    const {data:posts} = await getBlogPosts(section)
+    //console.log("Blogs",posts)
+    
   return (
-    <div key={`${section}s-list`}>
+    <div key={section}>
       <h1 className='capitalize'>{section} list</h1>
-      {blogPosts.map((post) => (
+      {posts.map((post) => (
         <DataCard post={post} section={section} ></DataCard>
-      ))
-      }
+      ))}
     </div>
   )
 }

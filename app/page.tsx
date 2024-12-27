@@ -36,7 +36,7 @@ export default async function Home() {
     <div className="">
       <main>
           <UserCard user={user}/>
-          <ItemsList section="posts"></ItemsList>
+          <ItemsList section="posts" />
       </main> 
     </div>
   );

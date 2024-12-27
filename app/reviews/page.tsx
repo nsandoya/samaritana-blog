@@ -7,8 +7,8 @@ import ItemsList from "@/components/shared/ItemsList";
 import UserCard from '@/components/shared/UserCard';
 
 export const metadata = {
-  title: 'Home',
-  description: 'Samaritana blog admin website :)'
+  title: 'Reviews',
+  description: "People feedback about Samaritana's books"
 }
 
 export default async function Reviews() {
@@ -31,9 +31,8 @@ export default async function Reviews() {
   return (
     <div className="">
       <main>
-        {/* <UserCard user={session.user}/> */}
           <UserCard user={user}/>
-          <ItemsList section={"reviews"}></ItemsList>
+          <ItemsList section="reviews" />
       </main> 
     </div>
   );
